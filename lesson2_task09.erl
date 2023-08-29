@@ -4,11 +4,11 @@
 pack(List) ->
     pack(List, []).
 
-pack([], Acc) ->
-    lists:reverse(Acc);
+pack([], P1) ->
+    lists:reverse(P1);
 pack([H | T], []) ->
-    pack(T, [[H] | Acc]);
-pack([H | T], [AccH | Rest]) when H =:= hd(AccH) ->
-    pack(T, [[H | AccH] | Rest]);
-pack([H | T], Acc) ->
-    pack(T, [[H] | Acc]).
+    pack(T, [[H]]);
+pack([H | T], [CheckList | Body]) when H =:= hd(CheckList) ->
+    pack(T, [[H | CheckList] | Body]);
+pack([H | T], P1) ->
+    pack(T, [[H] | P1]).
